@@ -268,6 +268,18 @@ export default function Slide6() {
     const [isComplete, setIsComplete] = useState(false);
 
     const currentPrize = currentRound < 6 ? prizes[currentRound] : null;
+    
+    // Use refs to store latest values for callbacks
+    const winningNumberRef = useRef(winningNumber);
+    const currentPrizeRef = useRef(currentPrize);
+    
+    useEffect(() => {
+        winningNumberRef.current = winningNumber;
+    }, [winningNumber]);
+    
+    useEffect(() => {
+        currentPrizeRef.current = currentPrize;
+    }, [currentPrize]);
 
     const generateUniqueNumber = useCallback(() => {
         let num;
@@ -294,10 +306,12 @@ export default function Slide6() {
         setShowWinner(true);
         setShowConfetti(true);
 
-        if (currentPrize) {
-            setResults(prev => [...prev, { prize: currentPrize, number: winningNumber }]);
+        const prize = currentPrizeRef.current;
+        const number = winningNumberRef.current;
+        if (prize) {
+            setResults(prev => [...prev, { prize, number }]);
         }
-    }, [currentPrize, winningNumber]);
+    }, []);
 
     const handleNextRound = useCallback(() => {
         setShowWinner(false);
