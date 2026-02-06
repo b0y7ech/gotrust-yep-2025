@@ -140,7 +140,7 @@ function NumberSlot({
                     <motion.div
                         className="text-7xl md:text-8xl font-black"
                         style={{
-                            background: currentPrize?.name === "GIẢI NHẤT"
+                            backgroundImage: currentPrize?.name === "GIẢI NHẤT"
                                 ? "linear-gradient(180deg, #ffd700 0%, #ff8c00 50%, #ffd700 100%)"
                                 : currentPrize?.name === "GIẢI NHÌ"
                                     ? "linear-gradient(180deg, #e8e8e8 0%, #c0c0c0 50%, #e8e8e8 100%)"
